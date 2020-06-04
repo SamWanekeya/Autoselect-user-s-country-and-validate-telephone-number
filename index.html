@@ -1,91 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Autoselect user's country</title>
-   <link rel="stylesheet" href="css/prism.css">
-    <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/intlTelInput.css">
-      <link rel="stylesheet" href="css/isValidNumber.css">
-  </head>
 
-  <body>
-    <h1>Autoselect user's country and validate telephone number</h1>
-    <p>Autoselect user's country using <a href="//ipinfo.io/" target="_blank">ipinfo.io</a> and validate the phone number input using <a href="//github.com/googlei18n/libphonenumber" target="_blank">Google's liphonenumber</a> libraries.<br>
-	Based on <a href="//intl-tel-input.com/">International Telephone Input</a>, a jQuery plugin for entering and validating international telephone numbers.
-	</p>
+<head>
+  <meta charset="utf-8">
+  <title>International Telephone Input</title>
+  <link rel="stylesheet" href="css/intlTelInput.css">
+  <link rel="stylesheet" href="css/demo.css">
+</head>
 
-    <h2>Result</h2>
-      <input id="phone" type="tel">
-<span id="valid-msg" class="hide">✓ Valid</span>
-<span id="error-msg" class="hide">Invalid number</span>
-	
- <h3>Main Components</h3>
-      <ul>
-        <li>Auto select the user's current location (country) using an IP lookup(<a href="//ipinfo.io/" target="_blank">ipinfo.io</a>)</li>
-        <li>Automatically set the input field placeholder to an example number that matches that of the autoselected country</li>
-        <li>Navigate the country dropdown by typing a country's name, or using up/down keys</li>
-        <li>Handle phone number extensions</li>
-        <li>The user types their national number and the plugin gives you the full standardized international number</li>
-        <li>Full validation, including specific error types</li>
-        <li>Retina flag icons</li>
-      </ul>
+<body>
+  <h1>International Telephone Input</h1>
+  <form>
+    <input id="phone" name="phone" type="tel">
+    <button type="submit">Submit</button>
+  </form>
 
-		
- <h2>Markup</h2>
-    <pre><code class="language-markup">&lt;input id=&quot;phone&quot; type=&quot;tel&quot;&gt;
-&lt;span id=&quot;valid-msg&quot; class=&quot;hide&quot;&gt;✓ Valid&lt;/span&gt;
-&lt;span id=&quot;error-msg&quot; class=&quot;hide&quot;&gt;Invalid number&lt;/span&gt;</code></pre>
-
-    <h2>Code</h2>
-    <pre><code class="language-javascript">
-	
-$(&quot;#phone&quot;).intlTelInput({
-  initialCountry: &quot;auto&quot;,
-  geoIpLookup: function(callback) {
-    $.get(&#39;//ipinfo.io&#39;, function() {}, &quot;jsonp&quot;).always(function(resp) {
-      var countryCode = (resp &amp;&amp; resp.country) ? resp.country : &quot;&quot;;
-      callback(countryCode);
+  <script src="js/intlTelInput.js"></script>
+  <script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+      // allowDropdown: false,
+      // autoHideDialCode: false,
+      // autoPlaceholder: "off",
+      // dropdownContainer: document.body,
+      // excludeCountries: ["us"],
+      // formatOnDisplay: false,
+      // geoIpLookup: function(callback) {
+      //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+      //     var countryCode = (resp && resp.country) ? resp.country : "";
+      //     callback(countryCode);
+      //   });
+      // },
+      // hiddenInput: "full_number",
+      // initialCountry: "auto",
+      // localizedCountries: { 'de': 'Deutschland' },
+      // nationalMode: false,
+      // onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+      // placeholderNumberType: "MOBILE",
+      // preferredCountries: ['cn', 'jp'],
+      // separateDialCode: true,
+      utilsScript: "js/utils.js",
     });
-  },
-  utilsScript: &quot;js/utils.js&quot; // just for formatting/placeholders etc
-});
+  </script>
+</body>
 
-  
-  var telInput = $(&quot;#phone&quot;),
-  errorMsg = $(&quot;#error-msg&quot;),
-  validMsg = $(&quot;#valid-msg&quot;);
-
-// initialise plugin
-telInput.intlTelInput({
-  utilsScript: &quot;js/utils.js&quot;
-});
-
-var reset = function() {
-  telInput.removeClass(&quot;error&quot;);
-  errorMsg.addClass(&quot;hide&quot;);
-  validMsg.addClass(&quot;hide&quot;);
-};
-
-// on blur: validate
-telInput.blur(function() {
-  reset();
-  if ($.trim(telInput.val())) {
-    if (telInput.intlTelInput(&quot;isValidNumber&quot;)) {
-      validMsg.removeClass(&quot;hide&quot;);
-    } else {
-      telInput.addClass(&quot;error&quot;);
-      errorMsg.removeClass(&quot;hide&quot;);
-    }
-  }
-});
-
-// on keyup / change flag: reset
-telInput.on(&quot;keyup change&quot;, reset);</code></pre>
-		
-    <script src="js/prism.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/intlTelInput.js"></script>
-    <script src="js/defaultCountryIp.js"></script>
-  </body>
 </html>

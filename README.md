@@ -1,9 +1,9 @@
 # Autoselect user's country and validate telephone number
-A jQuery plugin that autoselects user's country and validates international telephone numbers input, based on http://intl-tel-input.com
+A plugin that autoselects user's country and validates international telephone numbers input, based on http://intl-tel-input.com
 
 <img src="https://raw.githubusercontent.com/Wanekeya/Autoselect-user-s-country-and-validate-telephone-number/master/screenshot.jpg" width="424px" height="246px">
 
-A jQuery plugin that autoselects the user's country using <a href="//ipinfo.io/" target="_blank">ipinfo.io</a> and validates the phone number input using <a href="//github.com/googlei18n/libphonenumber" target="_blank">Google's liphonenumber</a> libraries. The whole concept is based on <a href="//intl-tel-input.com/">International Telephone Input</a>, a jQuery plugin for entering and validating international telephone numbers.
+A plugin that autoselects the user's country using <a href="//ipinfo.io/" target="_blank">ipinfo.io</a> and validates the phone number input using <a href="//github.com/googlei18n/libphonenumber" target="_blank">Google's liphonenumber</a> libraries. The whole concept is based on <a href="//intl-tel-input.com/">International Telephone Input</a>, a plugin for entering and validating international telephone numbers.
 
 <h3> Features:</h3>
 <p>
